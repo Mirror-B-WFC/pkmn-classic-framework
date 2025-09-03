@@ -25,6 +25,7 @@ namespace PkmnFoundations.Web.gts
         protected void Page_Load(object sender, EventArgs e)
         {
             Pokedex.Pokedex pokedex = AppStateHelper.Pokedex(Application);
+            GtsRecordBase record = null;
             PokemonPartyBase pkmn = null;
 
             if (Request.QueryString.Count == 0 || Request.QueryString.Count > 2) throw new WebException(400);
@@ -60,14 +61,14 @@ namespace PkmnFoundations.Web.gts
                 {
                     case "4":
                     {
-                        GtsRecord4 record = Database.Instance.GtsGetRecord4(pokedex, tradeId, isExchanged, true);
-                        if (record != null) pkmn = new PokemonParty4(pokedex, record.Data.ToArray());
+                        record = Database.Instance.GtsGetRecord4(pokedex, tradeId, isExchanged, true);
+                        if (record != null) pkmn = record.Pokemon;
 
                     } break;
                     case "5":
                     {
-                        GtsRecord5 record = Database.Instance.GtsGetRecord5(pokedex, tradeId, isExchanged, true);
-                        if (record != null) pkmn = new PokemonParty5(pokedex, record.Data.ToArray());
+                         record = Database.Instance.GtsGetRecord5(pokedex, tradeId, isExchanged, true);
+                        if (record != null) pkmn = record.Pokemon;
 
                     } break;
                     default:
@@ -84,11 +85,13 @@ namespace PkmnFoundations.Web.gts
             if (pkmn == null)
                 throw new WebException(403);
 
-            Bind(pkmn);
+            Bind(record);
         }
 
-        private void Bind(PokemonPartyBase pkmn)
+        private void Bind(GtsRecordBase record)
         {
+            PokemonPartyBase pkmn = record.Pokemon;
+
             litNickname.Text = pkmn.Nickname;
             bool shiny = pkmn.IsShiny;
             imgPokemon.ImageUrl = WebFormat.PokemonImageLarge(pkmn);
@@ -140,6 +143,7 @@ namespace PkmnFoundations.Web.gts
             litAbility.Text = pkmn.Ability == null ? "" : pkmn.Ability.Name.ToString();
             litVersion.Text = pkmn.Version.ToString();
             litHaxCheck.Text = pkmn.Validate().IsValid ? "Pass" : "Fail";
+            litOffererPid.Text = record.PID.ToString();
 
             // xxx: loop
             litHpCurr.Text = pkmn.HP.ToString();

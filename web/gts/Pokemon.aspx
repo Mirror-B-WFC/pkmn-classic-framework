@@ -124,6 +124,11 @@
                         <td class="pfFormValue"><asp:Literal ID="litHaxCheck" runat="server" />
                         </td>
                     </tr>
+                    <tr class="pfFormPair">
+                        <th class="pfFormKey">Offerer pid</th>
+                        <td class="pfFormValue"><asp:Literal ID="litOffererPid" runat="server" />
+                        </td>
+                    </tr>
                 </table>
             </div>
         
