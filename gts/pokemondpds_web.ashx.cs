@@ -143,7 +143,7 @@ namespace PkmnFoundations.GTS
                     // Apparently it's possible not just to use built-in survey
                     // questions but to also pose unique new ones?
                     // todo: Turn this into a PlazaQuestionnaire object.
-                    /*
+
                     response.Write(new byte[]{
 
                     0x00, 0x00, 0x00, 0x00, 
@@ -240,9 +240,11 @@ namespace PkmnFoundations.GTS
                     0x33, 0x00, 0x00, 0x00, 0x64, 0x01, 0x00, 0x00,
                     0x11, 0x01, 0x00, 0x00, 0x83, 0x00, 0x00, 0x00
                     }, 0, 732);
-                    */
+
+                    /*
                     response.Write(new byte[] { 0x0, 0x0, 0x0, 0x0 }, 0, 4);
                     response.Write(staticQuestionnaire, 0, staticQuestionnaire.Length);
+                    */
 
                 } break;
 

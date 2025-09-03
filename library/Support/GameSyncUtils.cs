@@ -67,7 +67,10 @@ namespace PkmnFoundations.Support
 			return (int)Base32Decode(gsid);
         }
 
-		private const string charset = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Not the entire alphabet, be careful
+        // todo: add PidToFc and FcToPid methods.
+        // Algo: https://www.caitsith2.com/ds/fc.php.txt
+
+        private const string charset = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Not the entire alphabet, be careful
 		public static string Base32Encode(long value)
 		{
 			StringBuilder result = new StringBuilder(10);

@@ -236,7 +236,7 @@ namespace PkmnFoundations.Wfc
             BirthMonth = birth_month;
             TrainerClass = trainer_class;
             FavouritePokemon = favourite_pokemon;
-            Unknown1 = unknown1; // appears to always be 0. Could mean unknown1 and unknown2 are a single int field
+            Unknown1 = unknown1; // usually 0 but I've seen the occasional 1.
             Unknown2 = unknown2; // seems to max at 999. Probably play time in hours
             Unknown3 = unknown3; // seems to max around 15163.
             Entries = entries;

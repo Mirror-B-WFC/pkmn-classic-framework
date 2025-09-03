@@ -19,6 +19,8 @@ at their wiki to connect.
 * Box uploads (PtHGSS)
 * Musical photos (BW1/2)
 * Wi-Fi Battle Tower and Subway
+* Trainer Rankings (PtHGSS)
+* Wi-Fi Plaza (PtHGSS) (Surveys still in progress)
 
 Direct communications are handled by 
 [AltWFC](https://github.com/polaris-/dwc_network_server_emulator) and are
@@ -27,8 +29,6 @@ haven't been tested that thoroughly.
 
 ## What doesn't
 
-* Trainer Rankings (PtHGSS)
-* Wi-Fi Plaza (PtHGSS)
 * Game Sync
 * Rating Battles / Competitions
 
