@@ -126,10 +126,9 @@ namespace PkmnFoundations.GTS
                     // todo: keep VIPs in database
                     response.Write(new byte[] { 0x00, 0x00, 0x00, 0x00 }, 0, 4);
                     // VIPs.
-                    foreach (var id in VIPIds)
+                    foreach (var vip in VIPs)
                     {
-                        response.Write(BitConverter.GetBytes(id), 0, 4);
-                        response.Write(new byte[] { 0x00, 0x00, 0x00, 0x00 }, 0, 4);
+                        response.Write(vip.Save(), 0, vip.Size);
                     }
                 }
                 break;
@@ -263,10 +262,27 @@ namespace PkmnFoundations.GTS
         /// <summary>
         /// The list of "VIPs".
         ///
-        /// Being a VIP in a lobby just gives you a golden trainer card, and upgrades your 'Touch Toy' to the highest
-        /// level right away. So far we've just been giving this to the developers who signed up for it.
+        /// Being a VIP gives you the following benefits:
+        ///
+        /// 1. Your Tap Toy is immediately upgraded to level 3.
+        /// 2. You get a gold trainer card, instead of a blue trainer card.
+        /// 3. You get a special color on the list of people in a lobby.
+        /// 4. You get a special color name on the footprint board.
+        /// 5. Some other mini games have a special color for your name.
+        ///
+        /// VIPs can also have custom "passphrases" that show when you bump
+        /// into them. These are generated from the standard word list you
+        /// could choose in any word box. These will show when you bump into
+        /// a user.
         /// </summary>
-        private static int[] VIPIds = new int[] { 600403373, 601315647, 601988829 };
+        private static VipRecord[] VIPs = new VipRecord[] {
+            new VipRecord(600403373, 0, 0, 0, 0),
+            new VipRecord(601315647, 0, 0, 0, 0),
+            new VipRecord(601988829, 0, 0, 0, 0),
+            new VipRecord(602778198, 4, 4, 4, 4), // "STEEL STEEL STEEL STEEL"
+            // Etchy -- for finding vips in the first place.
+            new VipRecord(602778716, 0, 0, 0, 0)
+        };
 
         /// <summary>
         /// A static questionnaire, who's id is not above 1k so it doesn't load the custom question text.
